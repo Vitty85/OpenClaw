@@ -2,7 +2,7 @@
 #include "../SharedDefines.h"
 #include "../Scene/SceneNodes.h"
 
-#include <SDL2/SDL2_gfxPrimitives.h>
+//#include <SDL2/SDL2_gfxPrimitives.h>
 
 // Conversion warnings from Box2D -> SDL2_gfx
 #pragma warning(disable: 4244)
@@ -29,7 +29,7 @@ void PhysicsDebugDrawer::DrawPolygon(const b2Vec2* vertices, int32 vertexCount, 
         vaY.push_back(worldPos.y - cameraPos.y);
     }
 
-    polygonRGBA(m_pRenderer, vaX.data(), vaY.data(), vertexCount, color.r * 255, color.g * 255, color.b * 255, color.a * 255);
+    //polygonRGBA(m_pRenderer, vaX.data(), vaY.data(), vertexCount, color.r * 255, color.g * 255, color.b * 255, color.a * 255);
 }
 
 // This is ~20 times more cpu taxing than DrawPolygon
@@ -58,7 +58,7 @@ void PhysicsDebugDrawer::DrawCircle(const b2Vec2& center, float32 radius, const 
     b2Vec2 worldPos = MetersToPixels(center);
     float worldRadius = MetersToPixels(radius);
 
-    circleRGBA(m_pRenderer, worldPos.x - cameraPos.x, worldPos.y - cameraPos.y, worldRadius, color.r * 255, color.g * 255, color.b * 255, color.a * 255);
+    //circleRGBA(m_pRenderer, worldPos.x - cameraPos.x, worldPos.y - cameraPos.y, worldRadius, color.r * 255, color.g * 255, color.b * 255, color.a * 255);
 }
 
 void PhysicsDebugDrawer::DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2& axis, const b2Color& color)

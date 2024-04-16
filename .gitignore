@@ -8,7 +8,6 @@ Build_Release/CLAW.REZ
 Build_Release/LEVEL[0-9]*.xml
 Build_Release/SAVES_test.XML
 Build_Release/startup_commands.txt
-build/
 Build/
 tags
 Build_Release/startup_commands.txt
