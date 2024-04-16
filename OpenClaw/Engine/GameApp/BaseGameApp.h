@@ -10,8 +10,8 @@
 #include "CommandHandler.h"
 #include "../UserInterface/Touch/TouchManager.h"
 
-const int DEFAULT_SCREEN_WIDTH = 1280;
-const int DEFAULT_SCREEN_HEIGHT = 768;
+const int DEFAULT_SCREEN_WIDTH = 640;
+const int DEFAULT_SCREEN_HEIGHT = 480;
 
 #ifndef FAIL
 #define FAIL(reason) do { LOG_ERROR(reason); IEventDataPtr pQuitEvent(new EventData_Quit_Game()); IEventMgr::Get()->VTriggerEvent(pQuitEvent); } while (0);

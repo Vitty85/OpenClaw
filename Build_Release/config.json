@@ -1,0 +1,8 @@
+{
+"label":"Open Claw",
+"icon":"icons/icon.png",
+"launch":"launch.sh",
+"useswap":1,
+"noaudiofix":1,
+"description":"A remake of original Captain Claw"
+}

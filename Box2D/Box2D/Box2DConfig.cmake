@@ -16,16 +16,16 @@
 #  BOX2D_VERSION_STRING - A human-readable string containing the version
 
 set ( BOX2D_FOUND 1 )
-set ( BOX2D_USE_FILE     "Box2D_Install//lib/cmake/Box2D/UseBox2D.cmake" )
+set ( BOX2D_USE_FILE     "/usr/local/lib/cmake/Box2D/UseBox2D.cmake" )
 
 set ( BOX2D_DEFINITIONS  "" )
-set ( BOX2D_INCLUDE_DIR  "Box2D_Install//include" )
-set ( Box2D_INCLUDE_DIRS "Box2D_Install//include" ) # deprecated
-set ( BOX2D_INCLUDE_DIRS "Box2D_Install//include" )
+set ( BOX2D_INCLUDE_DIR  "/usr/local/include" )
+set ( Box2D_INCLUDE_DIRS "/usr/local/include" ) # deprecated
+set ( BOX2D_INCLUDE_DIRS "/usr/local/include" )
 set ( BOX2D_LIBRARY      "Box2D" )
 set ( BOX2D_LIBRARIES    "Box2D" )
-set ( BOX2D_LIBRARY_DIRS "Box2D_Install//lib" )
-set ( BOX2D_ROOT_DIR     "Box2D_Install/" )
+set ( BOX2D_LIBRARY_DIRS "/usr/local/lib" )
+set ( BOX2D_ROOT_DIR     "/usr/local" )
 
 set ( BOX2D_VERSION_STRING "2.3.2" )
 

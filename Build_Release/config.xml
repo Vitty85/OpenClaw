@@ -1,6 +1,6 @@
 <Configuration>
   <Display>
-    <Size width="1280" height="960" />
+    <Size width="640" height="480" />
     <Scale>1</Scale>
     <UseVerticalSync>false</UseVerticalSync>
     <IsFullscreen>false</IsFullscreen>
@@ -11,8 +11,8 @@
     <SoundChannels>1</SoundChannels>
     <MixingChannels>64</MixingChannels>
     <ChunkSize>2048</ChunkSize>
-    <SoundVolume>10</SoundVolume>
-    <MusicVolume>1</MusicVolume>
+    <SoundVolume>30</SoundVolume>
+    <MusicVolume>7</MusicVolume>
     <SoundOn>true</SoundOn>
     <MusicOn>true</MusicOn>
     <MusicRpcServerPath>MidiProc.exe</MusicRpcServerPath>
@@ -63,21 +63,13 @@
     <ShowFps>false</ShowFps>
     <ShowPosition>false</ShowPosition>
   </GlobalOptions>
-  <ControlOptions>
+  <Control>
     <UseAlternateControls>false</UseAlternateControls>
-    <TouchScreen>
-      <Enable>true</Enable>
-      <!-- Distance to make a decision (separate tap/press and move events) -->
-      <!-- Range value 0..1 where 1 is screen width/height -->
-      <DistanceThreshold>0.05</DistanceThreshold>
-      <!-- How long make a decision in ms (separate short tap and long press) -->
-      <TimeThreshold>100</TimeThreshold>
-    </TouchScreen>
-  </ControlOptions>
+  </Control>
   <DebugOptions>
     <SkipMenu>false</SkipMenu>
-    <SkipMenuToLevel>13</SkipMenuToLevel>
-    <LastImplementedLevel>13</LastImplementedLevel>
+    <SkipMenuToLevel>10</SkipMenuToLevel>
+    <LastImplementedLevel>10</LastImplementedLevel>
     <SkipBossFightIntro>false</SkipBossFightIntro>
     <CpuDelay>0</CpuDelay>
   </DebugOptions>
