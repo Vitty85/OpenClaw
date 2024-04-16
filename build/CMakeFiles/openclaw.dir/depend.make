@@ -8875,6 +8875,7 @@ CMakeFiles/openclaw.dir/OpenClaw/Engine/Physics/PhysicsDebugDrawer.cpp.o: .././B
 CMakeFiles/openclaw.dir/OpenClaw/Engine/Physics/PhysicsDebugDrawer.cpp.o: .././Box2D/Box2D/Dynamics/b2WorldCallbacks.h
 CMakeFiles/openclaw.dir/OpenClaw/Engine/Physics/PhysicsDebugDrawer.cpp.o: .././ThirdParty/FastDelegate/FastDelegate.h
 CMakeFiles/openclaw.dir/OpenClaw/Engine/Physics/PhysicsDebugDrawer.cpp.o: .././ThirdParty/SDL2/SDL.h
+CMakeFiles/openclaw.dir/OpenClaw/Engine/Physics/PhysicsDebugDrawer.cpp.o: .././ThirdParty/SDL2/SDL2_gfxPrimitives.h
 CMakeFiles/openclaw.dir/OpenClaw/Engine/Physics/PhysicsDebugDrawer.cpp.o: .././ThirdParty/SDL2/SDL_assert.h
 CMakeFiles/openclaw.dir/OpenClaw/Engine/Physics/PhysicsDebugDrawer.cpp.o: .././ThirdParty/SDL2/SDL_atomic.h
 CMakeFiles/openclaw.dir/OpenClaw/Engine/Physics/PhysicsDebugDrawer.cpp.o: .././ThirdParty/SDL2/SDL_audio.h

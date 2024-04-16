@@ -320,6 +320,12 @@ begin_code.h
 close_code.h
 .././ThirdParty/SDL2/close_code.h
 
+.././ThirdParty/SDL2/SDL2_gfxPrimitives.h
+math.h
+-
+SDL.h
+.././ThirdParty/SDL2/SDL.h
+
 .././ThirdParty/SDL2/SDL_assert.h
 SDL_config.h
 .././ThirdParty/SDL2/SDL_config.h
@@ -931,6 +937,8 @@ PhysicsDebugDrawer.h
 /root/workspace/OpenClaw/OpenClaw/Engine/SharedDefines.h
 ../Scene/SceneNodes.h
 /root/workspace/OpenClaw/OpenClaw/Engine/Scene/SceneNodes.h
+SDL2/SDL2_gfxPrimitives.h
+-
 
 /root/workspace/OpenClaw/OpenClaw/Engine/Physics/PhysicsDebugDrawer.h
 SDL2/SDL.h
