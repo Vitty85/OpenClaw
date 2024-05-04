@@ -104,7 +104,7 @@ bool ClawHumanView::VLoadGameDelegate(TiXmlElement* pLevelXmlElem, LevelData* pL
     TiXmlElement* pXmlIngameMenuRoot = XmlResourceLoader::LoadAndReturnRootXmlElement("INGAME_MENU.XML");
     assert(pXmlIngameMenuRoot != NULL);
 
-    m_pIngameMenu.reset(new ScreenElementMenu(g_pApp->GetRenderer()));
+    m_pIngameMenu.reset(new ScreenElementMenu(g_pApp->GetRenderer(), g_pApp->GetSurface()));
     if (!m_pIngameMenu->Initialize(pXmlIngameMenuRoot))
     {
         LOG_ERROR("Failed to create in-game Menu");

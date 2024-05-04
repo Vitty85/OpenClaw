@@ -375,9 +375,10 @@ Point g_MenuScale = Point(1.0, 1.0);
 //
 //-----------------------------------------------------------------------------
 
-ScreenElementMenu::ScreenElementMenu(SDL_Renderer* pRenderer)
+ScreenElementMenu::ScreenElementMenu(SDL_Renderer* pRenderer, SDL_Surface* pSurface)
     :
     m_pRenderer(pRenderer),
+    m_pSurface(pSurface),
     m_bIsVisible(true),
     m_MenuType(MenuType_None)
 {
@@ -434,7 +435,9 @@ void ScreenElementMenu::VOnRender(uint32 msDiff)
     assert(m_pBackground->GetTexture() != NULL);
 
     SDL_Rect backgroundRect = GetScreenRect();
-    SDL_RenderCopy(m_pRenderer, m_pBackground->GetTexture(), &backgroundRect, NULL);
+    //SDL_RenderCopy(m_pRenderer, m_pBackground->GetTexture(), &backgroundRect, NULL);
+    SDL_BlitSurface(m_pBackground->GetSurface(), NULL, m_pSurface, &backgroundRect);
+    SDL_UpdateWindowSurface(g_pApp->GetWindow());
 
     assert(m_pActiveMenuPage);
     m_pActiveMenuPage->VOnRender(msDiff);
@@ -533,7 +536,7 @@ bool ScreenElementMenu::Initialize(TiXmlElement* pElem)
         m_pBackground = PcxResourceLoader::LoadAndReturnImage(backgroundImagePath.c_str());
     }
     assert(m_pBackground != nullptr);
-
+    
     //
     // ---------- Background Music ----------
     //
@@ -564,7 +567,7 @@ bool ScreenElementMenu::Initialize(TiXmlElement* pElem)
         assert(!pageName.empty());
         MenuPage pageType = StringToMenuPageEnum(pageName);
 
-        shared_ptr<ScreenElementMenuPage> pPage(new ScreenElementMenuPage(m_pRenderer));
+        shared_ptr<ScreenElementMenuPage> pPage(new ScreenElementMenuPage(m_pRenderer, m_pSurface));
         if (!pPage->Initialize(pMenuPageElem))
         {
             LOG_ERROR("Could not initialize menu page: " + pageName);
@@ -661,9 +664,10 @@ void ScreenElementMenu::IngameMenuEndGameDelegate(IEventDataPtr pEventData)
 //
 //-----------------------------------------------------------------------------
 
-ScreenElementMenuPage::ScreenElementMenuPage(SDL_Renderer* pRenderer)
+ScreenElementMenuPage::ScreenElementMenuPage(SDL_Renderer* pRenderer, SDL_Surface* pSurface)
     :
     m_pBackground(NULL),
+    m_pSurface(pSurface),
     m_pRenderer(pRenderer)
 {
 
@@ -689,7 +693,9 @@ void ScreenElementMenuPage::VOnRender(uint32 msDiff)
         assert(m_pBackground->GetTexture() != NULL);
 
         SDL_Rect backgroundRect = GetScreenRect();
-        SDL_RenderCopy(m_pRenderer, m_pBackground->GetTexture(), &backgroundRect, NULL);
+        //SDL_RenderCopy(m_pRenderer, m_pBackground->GetTexture(), &backgroundRect, NULL);
+        SDL_BlitSurface(m_pBackground->GetSurface(), NULL, m_pSurface, &backgroundRect);
+        SDL_UpdateWindowSurface(g_pApp->GetWindow());
     }
 
     for (shared_ptr<ScreenElementMenuItem> pMenuItem : m_MenuItems)
@@ -811,7 +817,7 @@ bool ScreenElementMenuPage::Initialize(TiXmlElement* pElem)
         pMenuItemElem != NULL;
         pMenuItemElem = pMenuItemElem->NextSiblingElement("MenuItem"))
     {
-        shared_ptr<ScreenElementMenuItem> pItem(new ScreenElementMenuItem(m_pRenderer));
+        shared_ptr<ScreenElementMenuItem> pItem(new ScreenElementMenuItem(m_pRenderer, m_pSurface));
         if (!pItem->Initialize(pMenuItemElem))
         {
             LOG_ERROR("Could not initialize menu item");
@@ -962,9 +968,10 @@ shared_ptr<ScreenElementMenuItem> ScreenElementMenuPage::FindMenuItemByName(std:
 //
 //-----------------------------------------------------------------------------
 
-ScreenElementMenuItem::ScreenElementMenuItem(SDL_Renderer* pRenderer)
+ScreenElementMenuItem::ScreenElementMenuItem(SDL_Renderer* pRenderer, SDL_Surface* pSurface)
     :
     m_pRenderer(pRenderer),
+    m_pSurface(pSurface),
     m_State(MenuItemState_None),
     m_Hotkey(SDL_SCANCODE_UNKNOWN),
     m_bVisible(true)
@@ -1007,7 +1014,9 @@ void ScreenElementMenuItem::VOnRender(uint32 msDiff)
     renderRect.w = (int)(pCurrImage->GetWidth() * g_MenuScale.x);
     renderRect.h = (int)(pCurrImage->GetHeight() * g_MenuScale.y);
 
-    SDL_RenderCopy(m_pRenderer, pCurrImage->GetTexture(), NULL, &renderRect);
+    //SDL_RenderCopy(m_pRenderer, pCurrImage->GetTexture(), NULL, &renderRect);
+    SDL_BlitSurface(pCurrImage->GetSurface(), NULL, m_pSurface, &renderRect);
+    SDL_UpdateWindowSurface(g_pApp->GetWindow());
 }
 
 bool ScreenElementMenuItem::VOnEvent(SDL_Event& evt)

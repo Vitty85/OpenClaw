@@ -125,7 +125,7 @@ typedef std::map<MenuPage, shared_ptr<ScreenElementMenuPage>> MenuPageMap;
 class ScreenElementMenu : public IScreenElement
 {
 public:
-    ScreenElementMenu(SDL_Renderer* pRenderer);
+    ScreenElementMenu(SDL_Renderer* pRenderer, SDL_Surface* pSurface);
     virtual ~ScreenElementMenu();
 
     // IScreenElement implementation
@@ -159,6 +159,7 @@ private:
 
     shared_ptr<Image> m_pBackground;
     SDL_Renderer* m_pRenderer;
+    SDL_Surface* m_pSurface;
 
     MenuPageMap m_MenuPageMap;
     shared_ptr<ScreenElementMenuPage> m_pActiveMenuPage;
@@ -173,7 +174,7 @@ typedef std::map<SDL_Keycode, IEventDataPtr> KeyToEventMap;
 class ScreenElementMenuPage : public IScreenElement
 {
 public:
-    ScreenElementMenuPage(SDL_Renderer* pRenderer);
+    ScreenElementMenuPage(SDL_Renderer* pRenderer, SDL_Surface* pSurface);
     virtual ~ScreenElementMenuPage();
 
     // IScreenElement implementation
@@ -207,6 +208,7 @@ private:
 
     shared_ptr<Image> m_pBackground;
     SDL_Renderer* m_pRenderer;
+    SDL_Surface* m_pSurface;
 };
 
 enum MenuItemType
@@ -258,7 +260,7 @@ class ScreenElementMenuItem : public IScreenElement
     //typedef std::vector<shared_ptr<MenuItemImageContainer>> MenuItemImageContainerList;
 
 public:
-    ScreenElementMenuItem(SDL_Renderer* pRenderer);
+    ScreenElementMenuItem(SDL_Renderer* pRenderer, SDL_Surface* pSurface);
     virtual ~ScreenElementMenuItem();
 
     // IScreenElement implementation
@@ -303,6 +305,7 @@ private:
     MenuItemImageMap m_Images;
     //MenuItemImageContainerList m_MenuItemImageContainerList;
     SDL_Renderer* m_pRenderer;
+    SDL_Surface* m_pSurface;
 };
 
 #endif

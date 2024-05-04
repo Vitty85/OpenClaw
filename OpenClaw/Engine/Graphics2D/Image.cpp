@@ -136,7 +136,7 @@ Image* Image::CreatePcxImage(char* rawBuffer, uint32_t size, SDL_Renderer* rende
     }
 
     SDL_Texture* pTexture = SDL_CreateTextureFromSurface(renderer, pSurface);
-    SDL_FreeSurface(pSurface);
+    //SDL_FreeSurface(pSurface);
 
     if (pTexture == NULL)
     {
@@ -145,11 +145,12 @@ Image* Image::CreatePcxImage(char* rawBuffer, uint32_t size, SDL_Renderer* rende
         return NULL;
     }
 
-    if (!pImage->Initialize(pTexture))
+    if (!pImage->Initialize(pTexture, pSurface))
     {
         LOG_ERROR(IMG_GetError());
         delete pImage;
         SDL_DestroyTexture(pTexture);
+        SDL_FreeSurface(pSurface);
         return NULL;
     }
 
@@ -169,7 +170,7 @@ Image* Image::CreatePngImage(char* rawBuffer, uint32_t size, SDL_Renderer* rende
     }
 
     SDL_Texture* pTexture = SDL_CreateTextureFromSurface(renderer, pSurface);
-    SDL_FreeSurface(pSurface);
+    //SDL_FreeSurface(pSurface);
 
     if (pTexture == NULL)
     {
@@ -178,11 +179,12 @@ Image* Image::CreatePngImage(char* rawBuffer, uint32_t size, SDL_Renderer* rende
         return NULL;
     }
 
-    if (!pImage->Initialize(pTexture))
+    if (!pImage->Initialize(pTexture, pSurface))
     {
         LOG_ERROR(IMG_GetError());
         delete pImage;
         SDL_DestroyTexture(pTexture);
+        SDL_FreeSurface(pSurface);
         return NULL;
     }
 
@@ -197,7 +199,7 @@ Image* Image::CreateImageFromColor(SDL_Color color, int w, int h, SDL_Renderer* 
     SDL_FillRect(pSurface, NULL, SDL_MapRGB(pSurface->format, color.r, color.g, color.b));
     SDL_Texture* pTextureRect = SDL_CreateTextureFromSurface(pRenderer, pSurface);
 
-    SDL_FreeSurface(pSurface);
+    //SDL_FreeSurface(pSurface);
 
     if (pTextureRect == NULL)
     {
@@ -206,11 +208,12 @@ Image* Image::CreateImageFromColor(SDL_Color color, int w, int h, SDL_Renderer* 
         return NULL;
     }
 
-    if (!pImage->Initialize(pTextureRect))
+    if (!pImage->Initialize(pTextureRect, pSurface))
     {
         LOG_ERROR(IMG_GetError());
         delete pImage;
         SDL_DestroyTexture(pTextureRect);
+        SDL_FreeSurface(pSurface);
         return NULL;
     }
 
@@ -238,7 +241,7 @@ bool Image::Initialize(WapPid* pid, SDL_Renderer* renderer)
     return true;
 }
 
-bool Image::Initialize(SDL_Texture* pTexture)
+bool Image::Initialize(SDL_Texture* pTexture, SDL_Surface* pSurface)
 {
     if (pTexture == NULL)
     {
@@ -248,6 +251,7 @@ bool Image::Initialize(SDL_Texture* pTexture)
     SDL_QueryTexture(pTexture, NULL, NULL, &m_Width, &m_Height);
     m_OffsetX = m_OffsetY = 0;
     m_pTexture = pTexture;
+    m_pSurface = pSurface;
 
     return true;
 }

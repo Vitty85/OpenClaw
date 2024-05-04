@@ -531,6 +531,7 @@ namespace Util
         SDL_FillRect(pSurface, NULL, SDL_MapRGB(pSurface->format, color.r, color.g, color.b));
         SDL_Texture* pTextureRect = SDL_CreateTextureFromSurface(pRenderer, pSurface);
 
+	std::cout << "Size: " << width << "x" << height << std::endl;
         SDL_FreeSurface(pSurface);
         return pTextureRect;
     }
@@ -541,6 +542,7 @@ namespace Util
         SDL_FillRect(pSurface, NULL, SDL_MapRGBA(pSurface->format, color.r, color.g, color.b, alpha));
         SDL_Texture* pTextureRect = SDL_CreateTextureFromSurface(pRenderer, pSurface);
 
+	std::cout << "Size: " << width << "x" << height << std::endl;
         SDL_FreeSurface(pSurface);
 
         return pTextureRect;

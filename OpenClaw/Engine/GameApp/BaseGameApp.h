@@ -10,8 +10,8 @@
 #include "CommandHandler.h"
 #include "../UserInterface/Touch/TouchManager.h"
 
-const int DEFAULT_SCREEN_WIDTH = 640;
-const int DEFAULT_SCREEN_HEIGHT = 480;
+const int DEFAULT_SCREEN_WIDTH = 1280;
+const int DEFAULT_SCREEN_HEIGHT = 768;
 
 #ifndef FAIL
 #define FAIL(reason) do { LOG_ERROR(reason); IEventDataPtr pQuitEvent(new EventData_Quit_Game()); IEventMgr::Get()->VTriggerEvent(pQuitEvent); } while (0);
@@ -265,6 +265,7 @@ public:
     uint32 GetWindowFlags();
 
     inline SDL_Renderer* GetRenderer() const { return m_pRenderer; }
+    inline SDL_Surface* GetSurface() const { return m_pSurface; }
     // TODO: Memory leak most likely
     inline WapPal* GetCurrentPalette() const { return m_pPalette; }
     void SetCurrentPalette(WapPal* palette) { m_pPalette = palette; }
@@ -345,6 +346,7 @@ private:
 
     SDL_Window* m_pWindow;
     SDL_Renderer* m_pRenderer;
+    SDL_Surface* m_pSurface;
     WapPal* m_pPalette;
 
     bool m_IsRunning;

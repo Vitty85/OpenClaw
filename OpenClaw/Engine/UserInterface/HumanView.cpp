@@ -208,7 +208,7 @@ bool HumanView::EnterMenu(TiXmlElement* pMenuData)
 {
     if (m_pMenu == nullptr)
     {
-        m_pMenu.reset(new ScreenElementMenu(g_pApp->GetRenderer()));
+        m_pMenu.reset(new ScreenElementMenu(g_pApp->GetRenderer(), g_pApp->GetSurface()));
         if (!m_pMenu->Initialize(pMenuData))
         {
             LOG_ERROR("Could not initialize ScreenElementMenu");
@@ -823,7 +823,7 @@ void HumanView::ClawDiedDelegate(IEventDataPtr pEventData)
         TiXmlElement* pXmlGameOverMenuRoot = XmlResourceLoader::LoadAndReturnRootXmlElement("GAME_OVER_MENU.XML");
         assert(pXmlGameOverMenuRoot != NULL);
 
-        shared_ptr<ScreenElementMenu> pGameOverMenu(new ScreenElementMenu(g_pApp->GetRenderer()));
+        shared_ptr<ScreenElementMenu> pGameOverMenu(new ScreenElementMenu(g_pApp->GetRenderer(), g_pApp->GetSurface()));
         DO_AND_CHECK(pGameOverMenu->Initialize(pXmlGameOverMenuRoot));
 
         m_ScreenElements.push_back(pGameOverMenu);

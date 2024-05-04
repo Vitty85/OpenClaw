@@ -19,6 +19,7 @@ public:
     static Image* CreateImageFromColor(SDL_Color color, int w, int h, SDL_Renderer* pRenderer);
 
     inline SDL_Texture* GetTexture() { return m_pTexture; }
+    inline SDL_Surface* GetSurface() { return m_pSurface; }
     inline int GetWidth() { return m_Width; }
     inline int GetHeight() { return m_Height; }
     inline int GetOffsetX() { return m_OffsetX; }
@@ -30,9 +31,10 @@ public:
 
 private:
     bool Initialize(WapPid* pid, SDL_Renderer* renderer);
-    bool Initialize(SDL_Texture* pTexture);
+    bool Initialize(SDL_Texture* pTexture, SDL_Surface* pSurface);
 
     SDL_Texture* m_pTexture;
+    SDL_Surface* m_pSurface;
     int m_Width;
     int m_Height;
     int m_OffsetX;

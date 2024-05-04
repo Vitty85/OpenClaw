@@ -44,6 +44,7 @@ BaseGameApp::BaseGameApp()
     m_pEventMgr = NULL;
     m_pWindow = NULL;
     m_pRenderer = NULL;
+    m_pSurface = NULL;
     m_pPalette = NULL;
     m_pAudio = NULL;
     m_pConsoleFont = NULL;
@@ -103,6 +104,7 @@ void BaseGameApp::Terminate()
 
     SAFE_DELETE(m_pGame);
     SDL_DestroyRenderer(m_pRenderer);
+    SDL_FreeSurface(m_pSurface);
     SDL_DestroyWindow(m_pWindow);
     SAFE_DELETE(m_pAudio);
     SAFE_DELETE(m_pTouchManager);
@@ -154,7 +156,8 @@ bool BaseGameApp::VPerformStartupTests()
     STARTUP_TEST(SDL_WasInit(SDL_INIT_EVENTS), "SDL Event subsystem is unitialized");
     STARTUP_TEST(m_pWindow != NULL, "SDL Window is NULL");
     STARTUP_TEST(m_pRenderer != NULL, "SDL Renderer is NULL");
-    
+    STARTUP_TEST(m_pSurface != NULL, "SDL Surface is NULL");
+
     // Game logic
     STARTUP_TEST(m_pGame != NULL, "Game Logic is NULL");
 
@@ -813,6 +816,15 @@ bool BaseGameApp::InitializeDisplay(GameOptions& gameOptions)
         LOG_ERROR("Failed to create SDL2 Renderer. Error: %s" + std::string(SDL_GetError()));
         return false;
     }
+
+    //m_pSurface = SDL_CreateRGBSurface(0, gameOptions.windowWidth, gameOptions.windowHeight, 32, 0x00FF0000, 0x0000FF00, 0x000000FF, 0xFF000000);
+    m_pSurface = SDL_GetWindowSurface(m_pWindow);
+    if (m_pSurface == NULL)
+    {
+        LOG_ERROR("Failed to create SDL2 Surface. Error: %s" + std::string(SDL_GetError()));
+        return false;
+    }
+    SDL_FillRect(m_pSurface, NULL, SDL_MapRGB(m_pSurface->format, 255, 255, 255));
 
     SDL_RenderSetScale(m_pRenderer, (float)gameOptions.scale, (float)gameOptions.scale);
 
