@@ -435,9 +435,9 @@ void ScreenElementMenu::VOnRender(uint32 msDiff)
     assert(m_pBackground->GetTexture() != NULL);
 
     SDL_Rect backgroundRect = GetScreenRect();
-    //SDL_RenderCopy(m_pRenderer, m_pBackground->GetTexture(), &backgroundRect, NULL);
-    SDL_BlitSurface(m_pBackground->GetSurface(), NULL, m_pSurface, &backgroundRect);
-    SDL_UpdateWindowSurface(g_pApp->GetWindow());
+    SDL_RenderCopy(m_pRenderer, m_pBackground->GetTexture(), &backgroundRect, NULL);
+    //SDL_BlitSurface(m_pBackground->GetSurface(), NULL, m_pSurface, &backgroundRect);
+    //SDL_UpdateWindowSurface(g_pApp->GetWindow());
 
     assert(m_pActiveMenuPage);
     m_pActiveMenuPage->VOnRender(msDiff);
@@ -693,9 +693,9 @@ void ScreenElementMenuPage::VOnRender(uint32 msDiff)
         assert(m_pBackground->GetTexture() != NULL);
 
         SDL_Rect backgroundRect = GetScreenRect();
-        //SDL_RenderCopy(m_pRenderer, m_pBackground->GetTexture(), &backgroundRect, NULL);
-        SDL_BlitSurface(m_pBackground->GetSurface(), NULL, m_pSurface, &backgroundRect);
-        SDL_UpdateWindowSurface(g_pApp->GetWindow());
+        SDL_RenderCopy(m_pRenderer, m_pBackground->GetTexture(), &backgroundRect, NULL);
+        //SDL_BlitSurface(m_pBackground->GetSurface(), NULL, m_pSurface, &backgroundRect);
+        //SDL_UpdateWindowSurface(g_pApp->GetWindow());
     }
 
     for (shared_ptr<ScreenElementMenuItem> pMenuItem : m_MenuItems)
@@ -1014,9 +1014,9 @@ void ScreenElementMenuItem::VOnRender(uint32 msDiff)
     renderRect.w = (int)(pCurrImage->GetWidth() * g_MenuScale.x);
     renderRect.h = (int)(pCurrImage->GetHeight() * g_MenuScale.y);
 
-    //SDL_RenderCopy(m_pRenderer, pCurrImage->GetTexture(), NULL, &renderRect);
-    SDL_BlitSurface(pCurrImage->GetSurface(), NULL, m_pSurface, &renderRect);
-    SDL_UpdateWindowSurface(g_pApp->GetWindow());
+    SDL_RenderCopy(m_pRenderer, pCurrImage->GetTexture(), NULL, &renderRect);
+    //SDL_BlitSurface(pCurrImage->GetSurface(), NULL, m_pSurface, &renderRect);
+    //SDL_UpdateWindowSurface(g_pApp->GetWindow());
 }
 
 bool ScreenElementMenuItem::VOnEvent(SDL_Event& evt)
